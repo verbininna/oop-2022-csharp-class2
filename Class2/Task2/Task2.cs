@@ -2,43 +2,40 @@
 {
     abstract class Animal
     {
-        internal abstract void Talk();
-    }
-
-    class Cat : Animal
-    {
-        internal override void Talk()
+        internal virtual string message { get; set; } = "";
+    
+        internal void Talk()
         {
-            Console.WriteLine("Кошка мяучит 'мяу-мяу'");
+           Console.WriteLine(this.message);
         }
     }
 
-    class Dog : Animal
+    internal class Cat:Animal
     {
-        internal override void Talk()
-        {
-            Console.WriteLine("Собака гавкает 'гав-гав-гав'");
-        }
+        internal override string message { get; set; } = "Кошка мяучит 'мяу-мяу'";
     }
 
-    class Goose : Animal
+    internal class Dog : Animal
     {
-        internal override void Talk()
-        {
-            Console.WriteLine("Гусь гогочет 'га-га-га'");
-        }
+        internal override string message { get; set; } = "Собака гавкает 'гав-гав-гав'";
     }
 
-    public class Task2
+    internal class Goose : Animal
     {
-        public static void Main(string[] args)
+        internal override string message { get; set; } = "Гусь гогочет 'га-га-га'";
+
+    }
+
+    internal class Task2
+    {
+        internal static void Main(string[] args)
         {
             RunTest();
         }
 
         internal static void RunTest()
         {
-            foreach (var animal in new List<Animal> { new Cat(), new Dog(), new Goose() })
+            foreach (var animal in new List<Animal> {new Cat(), new Dog(), new Goose()})
             {
                 animal.Talk();
             }

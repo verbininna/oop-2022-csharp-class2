@@ -1,4 +1,6 @@
-﻿namespace Task3
+﻿using System.Collections.Generic;
+
+namespace Task3
 {
     abstract class Creature
     {
@@ -23,10 +25,12 @@
     {
         internal static void PrintMessageFrom(Creature creature)
         {
-            throw new NotImplementedException();
+            if (creature is Human) Console.WriteLine(((Human)creature).Greeting());
+            else if (creature is Dog) Console.WriteLine(((Dog)creature).Bark());
+            else if (creature is Alien) Console.WriteLine(((Alien)creature).Command());
         }
 
-        static List<Dog> FindDogs(List<Creature> creatures) => throw new NotImplementedException();
+        static List<Dog> FindDogs(List<Creature> creatures) => new List<Dog>(creatures.Where((Creature creature) => (creature is Dog)).Select((Creature creature) => (Dog)creature));
 
         public static void Main(string[] args)
         {
